@@ -9,12 +9,12 @@ import reader.registerToCourseCurried
 
 class CoursesTests
 {
-    val registerFunction = registerToCourseCurried( AuthService(), CourseService())
+    val registerToCourses = registerToCourseCurried( AuthService(), CourseService())
 
     @Test
     fun `user with name starting for m is authorized`() {
 
-        val receipt = registerFunction("Marco", Course("History"))
+        val receipt = registerToCourses("Marco", Course("History"))
 
         assertThat(receipt,`is`("successful registration for Marco to course History"))
     }
@@ -22,7 +22,7 @@ class CoursesTests
     @Test
     fun `user with name not starting for m is not authorized`() {
 
-        val receipt = registerFunction("Luigi", Course("History"))
+        val receipt = registerToCourses("Luigi", Course("History"))
 
         assertThat(receipt,`is`("user Luigi is not authorized"))
     }
