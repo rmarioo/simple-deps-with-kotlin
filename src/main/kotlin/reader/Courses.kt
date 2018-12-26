@@ -10,18 +10,18 @@ fun registerToCourseCurried( authService: AuthService, courseService: CourseServ
 
     fun (userName: String,course: Course) =
                        authorize(authService, userName)
-                .map { applyToCourse(courseService, it, course) }
-                .map { authorizedReceipt(it) }
-          .getOrElse { notAuthorizedReceipt(userName) }
+                .map { registerUserToCourse(courseService, it, course) }
+                .map { createAuthorizedReceipt(it) }
+          .getOrElse { createNotAuthorizedReceipt(userName) }
 
 
-fun authorizedReceipt(registration: Registration): String {
+fun createAuthorizedReceipt(registration: Registration): String {
     return "successful registration for ${registration.user.name} to course ${registration.course.name}"
 }
 
-private fun notAuthorizedReceipt(userName: String) = "user $userName is not authorized"
+private fun createNotAuthorizedReceipt(userName: String) = "user $userName is not authorized"
 
-private fun applyToCourse(courseService: CourseService, user: User, course: Course) =
+private fun registerUserToCourse(courseService: CourseService, user: User, course: Course) =
         courseService.applyToCourse(user, course)
 
 private fun authorize(authService: AuthService, userName: String) =
