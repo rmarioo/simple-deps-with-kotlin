@@ -12,8 +12,8 @@ fun registerToCourseCurried( authService: AuthService, courseService: CourseServ
 
                        findUser(userName, authService)
                 .map { registerUserToCourse(it, course, courseService) }
-                .map { createAuthorizedReceipt(it) }
-          .getOrElse { createNotAuthorizedReceipt(userName) }
+                .map { createRegistrationReceipt(it) }
+          .getOrElse { createFailureReceipt(userName) }
 
 private fun findUser(userName: String, authService: AuthService): Option<User> =
         authService.authorize(userName)
@@ -21,10 +21,10 @@ private fun findUser(userName: String, authService: AuthService): Option<User> =
 private fun registerUserToCourse(user: User, course: Course, courseService: CourseService): Registration =
         courseService.applyToCourse(user, course)
 
-private fun createAuthorizedReceipt(registration: Registration) =
+private fun createRegistrationReceipt(registration: Registration) =
      "successful registration for ${registration.user.name} to course ${registration.course.name}"
 
-private fun createNotAuthorizedReceipt(userName: String) =
+private fun createFailureReceipt(userName: String) =
      "user $userName is not authorized"
 
 class AuthService {
