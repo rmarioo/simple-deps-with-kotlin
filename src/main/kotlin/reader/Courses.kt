@@ -14,30 +14,26 @@ fun registerToCourseCurried( authService: AuthService, courseService: CourseServ
                 .map { createAuthorizedReceipt(it) }
           .getOrElse { createNotAuthorizedReceipt(userName) }
 
-
-fun createAuthorizedReceipt(registration: Registration): String {
-    return "successful registration for ${registration.user.name} to course ${registration.course.name}"
-}
-
-private fun createNotAuthorizedReceipt(userName: String) = "user $userName is not authorized"
-
-private fun registerUserToCourse(courseService: CourseService, user: User, course: Course) =
-        courseService.applyToCourse(user, course)
-
-private fun authorize(authService: AuthService, userName: String) =
+private fun authorize(authService: AuthService, userName: String): Option<User> =
         authService.authorize(userName)
 
+private fun registerUserToCourse(courseService: CourseService, user: User, course: Course): Registration =
+        courseService.applyToCourse(user, course)
+
+private fun createAuthorizedReceipt(registration: Registration) =
+     "successful registration for ${registration.user.name} to course ${registration.course.name}"
+
+private fun createNotAuthorizedReceipt(userName: String) =
+     "user $userName is not authorized"
+
 class AuthService {
-    fun authorize(userName: String): Option<User> {
-        return if (userName.startsWith("M")) just(User(userName))
-        else empty()
-    }
+    fun authorize(userName: String): Option<User> =
+         if (userName.startsWith("M")) just(User(userName)) else empty()
+
 }
 
 class CourseService {
-    fun applyToCourse(user: User, course: Course): Registration {
-          return Registration(user, course)
-    }
+    fun applyToCourse(user: User, course: Course) = Registration(user, course)
 }
 
 data class User(val name: String)
