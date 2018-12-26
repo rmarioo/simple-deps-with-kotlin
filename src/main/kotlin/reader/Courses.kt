@@ -6,7 +6,7 @@ import arrow.core.Option.Companion.just
 import arrow.core.getOrElse
 
 
-fun registerToCourseCurried( authService: AuthService, courseService: CourseService) =
+fun registerToCourseCurried( authService: AuthService, courseService: CourseService): (String, Course) -> String =
 
     fun (userName: String,course: Course) =
 
