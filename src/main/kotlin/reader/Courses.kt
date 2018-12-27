@@ -1,23 +1,19 @@
 package reader
 
-import arrow.core.Option
 import arrow.core.getOrElse
+import reader.api.MainApi
+import reader.model.Course
+import reader.model.Person
+import reader.model.Registration
 
 
-fun registerToCourseCurried(authService: AuthenticationService, courseService: CourseService): (Person, Course) -> String =
+fun registerToCourseCurried(mainApi: MainApi): (Person, Course) -> String =
 
-    fun (person: Person,course: Course) =
-
-                       findUser(person, authService)
-                .map { registerUserToCourse(it, course, courseService) }
+    fun (person: Person, course: Course) =
+                       mainApi.applyToCourse(person, course)
                 .map { createRegistrationReceipt(it) }
           .getOrElse { createFailureReceipt(person) }
 
-private fun findUser(person: Person, authService: AuthenticationService): Option<User> =
-        authService.authorize(person)
-
-private fun registerUserToCourse(user: User, course: Course, courseService: CourseService): Registration =
-        courseService.applyToCourse(user, course)
 
 private fun createRegistrationReceipt(registration: Registration) =
      "successful registration for ${registration.user.name} to course ${registration.course.name}"

@@ -2,11 +2,24 @@
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
-import reader.*
+import reader.api.MainApi
+import reader.model.Course
+import reader.model.Person
+import reader.port.AuthenticationService
+import reader.port.CourseService
+import reader.port.InMemoryAuthenticationService
+import reader.port.InMemoryCourseService
+import reader.registerToCourseCurried
 
 class CoursesTests
 {
-    val registerToCourses = registerToCourseCurried( InMemoryAuthenticationService(), InMemoryCourseService())
+    val mainApi = object: MainApi
+    {
+        override val authenticationService: AuthenticationService = InMemoryAuthenticationService()
+        override val courseService: CourseService = InMemoryCourseService()
+    }
+
+    val registerToCourses = registerToCourseCurried(mainApi)
 
     @Test
     fun `user with name starting for m is authorized`() {
