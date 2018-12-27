@@ -10,6 +10,6 @@ interface MainApi: AuthApi, CourseApi {
     fun Person.applyTo(course: Course): Option<Registration> =
             authorize().map { user -> user.applyToCourse(course) }
 
-    fun applyToCourse(person: Person, course: Course) = person.applyTo(course)
+    fun registerToCourse(person: Person, course: Course) = person.applyTo(course)
 
 }
