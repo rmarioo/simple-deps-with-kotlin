@@ -2,14 +2,14 @@
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
-import reader.AuthService
 import reader.Course
-import reader.CourseService
+import reader.InMemoryAuthenticationService
+import reader.InMemoryCourseService
 import reader.registerToCourseCurried
 
 class CoursesTests
 {
-    val registerToCourses = registerToCourseCurried( AuthService(), CourseService())
+    val registerToCourses = registerToCourseCurried( InMemoryAuthenticationService(), InMemoryCourseService())
 
     @Test
     fun `user with name starting for m is authorized`() {
