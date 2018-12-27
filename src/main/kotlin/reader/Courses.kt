@@ -4,17 +4,17 @@ import arrow.core.Option
 import arrow.core.getOrElse
 
 
-fun registerToCourseCurried(authService: AuthenticationService, courseService: CourseService): (String, Course) -> String =
+fun registerToCourseCurried(authService: AuthenticationService, courseService: CourseService): (Person, Course) -> String =
 
-    fun (userName: String,course: Course) =
+    fun (person: Person,course: Course) =
 
-                       findUser(userName, authService)
+                       findUser(person, authService)
                 .map { registerUserToCourse(it, course, courseService) }
                 .map { createRegistrationReceipt(it) }
-          .getOrElse { createFailureReceipt(userName) }
+          .getOrElse { createFailureReceipt(person) }
 
-private fun findUser(userName: String, authService: AuthenticationService): Option<User> =
-        authService.authorize(userName)
+private fun findUser(person: Person, authService: AuthenticationService): Option<User> =
+        authService.authorize(person)
 
 private fun registerUserToCourse(user: User, course: Course, courseService: CourseService): Registration =
         courseService.applyToCourse(user, course)
@@ -22,6 +22,6 @@ private fun registerUserToCourse(user: User, course: Course, courseService: Cour
 private fun createRegistrationReceipt(registration: Registration) =
      "successful registration for ${registration.user.name} to course ${registration.course.name}"
 
-private fun createFailureReceipt(userName: String) =
-     "user $userName is not authorized"
+private fun createFailureReceipt(person: Person) =
+     "user ${person.name} is not authorized"
 
