@@ -9,14 +9,14 @@ fun registerToCourseCurried(authService: AuthenticationService, courseService: C
     fun (person: Person,course: Course) =
 
                        authorize(person, authService)
-                .map { registerUserToCourse(it, course, courseService) }
+                .map { registerToCourse(it, course, courseService) }
                 .map { createRegistrationReceipt(it) }
           .getOrElse { createFailureReceipt(person) }
 
 private fun authorize(person: Person, authService: AuthenticationService): Option<User> =
         authService.authorize(person)
 
-private fun registerUserToCourse(user: User, course: Course, courseService: CourseService): Registration =
+private fun registerToCourse(user: User, course: Course, courseService: CourseService): Registration =
         courseService.applyToCourse(user, course)
 
 private fun createRegistrationReceipt(registration: Registration) =
