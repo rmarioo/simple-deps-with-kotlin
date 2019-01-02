@@ -10,7 +10,7 @@ import reader.model.Registration
 fun registerToCourseCurried(mainApi: MainApi): (Person, Course) -> String =
 
     fun (person: Person, course: Course) =
-                       mainApi.registerToCourse(person, course)
+                       mainApi.authorizeAndRegisterToCourse(person, course)
                 .map { createRegistrationReceipt(it) }
           .getOrElse { createFailureReceipt(person) }
 
