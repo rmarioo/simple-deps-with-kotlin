@@ -8,12 +8,12 @@ fun registerToCourseCurried(authService: AuthenticationService, courseService: C
 
     fun (person: Person,course: Course) =
 
-                       findUser(person, authService)
+                       authorize(person, authService)
                 .map { registerUserToCourse(it, course, courseService) }
                 .map { createRegistrationReceipt(it) }
           .getOrElse { createFailureReceipt(person) }
 
-private fun findUser(person: Person, authService: AuthenticationService): Option<User> =
+private fun authorize(person: Person, authService: AuthenticationService): Option<User> =
         authService.authorize(person)
 
 private fun registerUserToCourse(user: User, course: Course, courseService: CourseService): Registration =
