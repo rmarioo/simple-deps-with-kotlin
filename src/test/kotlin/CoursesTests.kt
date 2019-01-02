@@ -2,7 +2,7 @@
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
-import reader.api.MainApi
+import reader.api.ComposedApi
 import reader.model.Course
 import reader.model.Person
 import reader.port.AuthenticationService
@@ -13,7 +13,7 @@ import reader.registerToCourseCurried
 
 class CoursesTests
 {
-    val mainApi = object: MainApi
+    val mainApi = object: ComposedApi
     {
         override val authenticationService: AuthenticationService = InMemoryAuthenticationService()
         override val courseService: CourseService = InMemoryCourseService()

@@ -1,16 +1,16 @@
 package reader
 
 import arrow.core.getOrElse
-import reader.api.MainApi
+import reader.api.ComposedApi
 import reader.model.Course
 import reader.model.Person
 import reader.model.Registration
 
 
-fun registerToCourseCurried(mainApi: MainApi): (Person, Course) -> String =
+fun registerToCourseCurried(api: ComposedApi): (Person, Course) -> String =
 
     fun (person: Person, course: Course) =
-                       mainApi.authorizeAndRegisterToCourse(person, course)
+                       api.authorizeAndRegisterToCourse(person, course)
                 .map { createRegistrationReceipt(it) }
           .getOrElse { createFailureReceipt(person) }
 

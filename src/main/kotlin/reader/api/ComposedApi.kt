@@ -5,7 +5,7 @@ import reader.model.Course
 import reader.model.Person
 import reader.model.Registration
 
-interface MainApi: AuthApi, CourseApi {
+interface ComposedApi: AuthApi, CourseApi {
 
     fun authorizeAndRegisterToCourse(person: Person, course: Course) = person.applyTo(course)
 
