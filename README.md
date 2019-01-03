@@ -5,7 +5,7 @@ extensions functions
 Problem description:  
 A person can register at university course if it is an user of university.  
 
-The refactoring in the branch a_kind_of_magic_dependencies show how it is possible to:
+The refactoring in the branch **a_kind_of_magic_dependencies** show how it is possible to:
 
 - have an high level api authorizeAndRegisterToCourse ( in  ComposedApi ) is build by composition on
  two low level api AuthApi and CourseApi. This high level api is build even before that the 
