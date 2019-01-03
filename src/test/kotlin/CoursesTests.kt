@@ -2,7 +2,7 @@
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
-import simple_deps.api.ComposedApi
+import simple_deps.ComposedApi
 import simple_deps.model.Course
 import simple_deps.model.Person
 import simple_deps.port.AuthenticationService
