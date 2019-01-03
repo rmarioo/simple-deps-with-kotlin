@@ -17,6 +17,7 @@ autorize() and registerToCourse
 
 - It is easy to test the main function by injecting the in-memory implementations
   
-References:    
+References:  
+    
   
 [Simple Inversion of Control in Kotlin without Dependency Injection frameworks](https://www.pacoworks.com/2018/02/25/simple-dependency-injection-in-kotlin-part-1/ "Simple Inversion of Control in Kotlin without Dependency Injection frameworks")
