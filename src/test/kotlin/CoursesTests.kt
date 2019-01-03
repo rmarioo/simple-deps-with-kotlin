@@ -2,14 +2,14 @@
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
-import reader.api.ComposedApi
-import reader.model.Course
-import reader.model.Person
-import reader.port.AuthenticationService
-import reader.port.CourseService
-import reader.port.InMemoryAuthenticationService
-import reader.port.InMemoryCourseService
-import reader.registerToCourseCurried
+import simple_deps.api.ComposedApi
+import simple_deps.model.Course
+import simple_deps.model.Person
+import simple_deps.port.AuthenticationService
+import simple_deps.port.CourseService
+import simple_deps.port.InMemoryAuthenticationService
+import simple_deps.port.InMemoryCourseService
+import simple_deps.registerToCourseCurried
 
 class CoursesTests
 {

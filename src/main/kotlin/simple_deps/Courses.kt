@@ -1,10 +1,10 @@
-package reader
+package simple_deps
 
 import arrow.core.getOrElse
-import reader.api.ComposedApi
-import reader.model.Course
-import reader.model.Person
-import reader.model.Registration
+import simple_deps.api.ComposedApi
+import simple_deps.model.Course
+import simple_deps.model.Person
+import simple_deps.model.Registration
 
 
 fun registerToCourseCurried(api: ComposedApi): (Person, Course) -> String =

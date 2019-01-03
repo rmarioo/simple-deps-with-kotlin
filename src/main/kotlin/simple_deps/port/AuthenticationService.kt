@@ -1,8 +1,8 @@
-package reader.port
+package simple_deps.port
 
 import arrow.core.Option
-import reader.model.Person
-import reader.model.User
+import simple_deps.model.Person
+import simple_deps.model.User
 
 interface AuthenticationService {
     fun authorize(person: Person): Option<User>

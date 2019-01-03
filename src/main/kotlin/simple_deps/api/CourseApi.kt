@@ -1,8 +1,8 @@
-package reader.api
+package simple_deps.api
 
-import reader.model.Course
-import reader.model.User
-import reader.port.CourseService
+import simple_deps.model.Course
+import simple_deps.model.User
+import simple_deps.port.CourseService
 
 interface CourseApi {
 

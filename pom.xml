@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>it.rmarioo.fp</groupId>
-    <artifactId>reader_example</artifactId>
+    <artifactId>courses</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

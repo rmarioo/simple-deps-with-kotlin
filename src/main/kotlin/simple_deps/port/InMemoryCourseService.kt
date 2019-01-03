@@ -1,8 +1,8 @@
-package reader.port
+package simple_deps.port
 
-import reader.model.Course
-import reader.model.Registration
-import reader.model.User
+import simple_deps.model.Course
+import simple_deps.model.Registration
+import simple_deps.model.User
 
 class InMemoryCourseService: CourseService {
     override fun applyToCourse(user: User, course: Course) = Registration(user, course)

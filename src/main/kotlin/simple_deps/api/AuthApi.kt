@@ -1,9 +1,9 @@
-package reader.api
+package simple_deps.api
 
 import arrow.core.Option
-import reader.model.Person
-import reader.model.User
-import reader.port.AuthenticationService
+import simple_deps.model.Person
+import simple_deps.model.User
+import simple_deps.port.AuthenticationService
 
 interface AuthApi
 {
