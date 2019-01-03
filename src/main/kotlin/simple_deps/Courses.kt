@@ -1,4 +1,4 @@
-package reader
+package simple_deps
 
 import arrow.core.Option
 import arrow.core.getOrElse
